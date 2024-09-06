@@ -10,8 +10,8 @@ Do the backend installation first - https://github.com/vanakenm/hyf-backend-temp
 - Clone your new repository locally (everyone)
 - Run it:
 
-    npm i
-    npm run dev 
+  npm i
+  npm run dev
 
 Go to localhost:5173.
 
