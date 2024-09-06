@@ -1,22 +1,38 @@
-import { Col, Container, Image, Nav, Row } from "react-bootstrap";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import Layout from './components/Layout/Layout';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import Home from './pages/Home/Home';
+import PostDetails from './pages/PostDetails/PostDetails';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
+import CreatePost from './pages/CreatePost/CreatePost';
+import EditPost from './pages/EditPost/EditPost';
+
+import './App.css';
 
 function App() {
-  return (
-    <Container>
-      <Image
-        src="https://static.wixstatic.com/media/2524ce_cb266239a431485aa92c419e50505f7a~mv2.png"
-        className="mx-auto d-block"
-      />
-      <Row>
-        <h1 className="text-center">HYF Frontend template</h1>
-        <Col>
-          <Nav.Link href="/recipes" className="text-center">
-            Recipes List
-          </Nav.Link>
-        </Col>
-      </Row>
-    </Container>
-  );
+    const Router = createBrowserRouter([
+        {
+            path: '/',
+            element: <Layout />,
+            errorElement: <ErrorPage />,
+            children: [
+                { index: true, element: <Home /> },
+                { path: 'post/:id', element: <PostDetails /> },
+                { path: 'register', element: <Register /> },
+                { path: 'login', element: <Login /> },
+                { path: 'create', element: <CreatePost /> },
+                { path: 'post/:id/edit', element: <EditPost /> }
+            ]
+        }
+    ]);
+
+    return (
+        <>
+            <RouterProvider router={Router} />
+        </>
+    );
 }
 
 export default App;
