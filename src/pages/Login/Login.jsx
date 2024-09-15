@@ -7,6 +7,10 @@ function LoginPage() {
     // Handle login submission logic here
   };
 
+  const handleCancel = () => {
+    history.push('/login'); // Redirect to the login page
+  };
+
   return (
     <div className="auth-container">
       <div className="form-container">
@@ -20,7 +24,12 @@ function LoginPage() {
           <form onSubmit={handleSubmit}>
             <input type="email" placeholder="Email" required />
             <input type="password" placeholder="Password" required />
-            <button type="submit" className='login-button'>Log In</button>
+            <div className="button-group">
+                <button type="submit">Sign up</button>
+                <button type="button" className="cancel-btn" onClick={handleCancel}>
+    Cancel
+  </button>
+</div>
             <div className="forgot-password">
               <a href="#">Forgot Password?</a>
             </div>
