@@ -12,7 +12,7 @@ function LoginPage() {
       <div className="form-container">
         {/* Logo & App Name */}
         <div className="app-header">
-          <h1>MyBlog</h1>
+          <h1>Blog</h1>
         </div>
 
         <div className="login-form">
@@ -20,7 +20,7 @@ function LoginPage() {
           <form onSubmit={handleSubmit}>
             <input type="email" placeholder="Email" required />
             <input type="password" placeholder="Password" required />
-            <button type="submit">Log In</button>
+            <button type="submit" className='login-button'>Log In</button>
             <div className="forgot-password">
               <a href="#">Forgot Password?</a>
             </div>
