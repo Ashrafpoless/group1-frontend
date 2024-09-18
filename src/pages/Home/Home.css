@@ -57,15 +57,15 @@
 .overlay-text2 {
     padding-top: 3%;
     padding-bottom: 3%;
-    color:black;
-    background-color:white;
+    color: black;
+    background-color: white;
     font-size: 3rem;
     text-align: center;
     font-weight: bold;
 }
 
-.button3{
-  background-color: black;
+.button3 {
+    background-color: black;
 }
 
 .container {

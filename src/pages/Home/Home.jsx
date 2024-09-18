@@ -62,9 +62,9 @@ const Homepage = () => {
             <div className="overlay-text2">
                 Take your project to the next level
                 <div>
-                        <a href="register/">
-                            <button className='button3'>Start Now</button>
-                        </a>
+                    <a href="register/">
+                        <button className="button3">Start Now</button>
+                    </a>
                 </div>
             </div>
         </div>
