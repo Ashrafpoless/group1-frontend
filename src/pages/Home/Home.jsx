@@ -1,24 +1,76 @@
 import React from 'react';
 import './Home.css';
-import { AlignCenter } from 'react-bootstrap-icons';
+const Homepage = () => {
+    return (
+        <div className="homepage">
+            <div className="image-text-section1">
+                <div className="image-container1">
+                    <img
+                        src="https://www.esstudioediciones.com/blog/libros-publicar-escribir-autoedicion.jpg"
+                        alt="Image 1"
+                    />
+                    <div className="overlay-text1">
+                        With Blog, 'Imagination' is limitless
+                        <a href="register/">
+                            <button>Get Started</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-function App() {
-  return (
-    <div className="homepage">
-      <header className="header">
+            <div class="container">
+                <div class="column">
+                    <h2>Build a blog</h2>
+                    <p>
+                        Write freely while experience our intuitive platform for
+                        blogging
+                    </p>
+                </div>
+                <div class="column">
+                    <h2>Manage your projects</h2>
+                    <p>
+                        Streamline your day-to-day with Blog, tailored to your
+                        needs.
+                    </p>
+                </div>
+                <div class="column">
+                    <h2>Grow online</h2>
+                    <p>
+                        Expand your reach and share your blogs with your
+                        network.
+                    </p>
+                </div>
+            </div>
 
-      </header>
+            <div className="image-text-section1">
+                <div className="image-container1">
+                    <img
+                        src="https://educacionencasacolombia.com/wp-content/uploads/2022/09/escritor.jpg"
+                        alt="image3"
+                    />
+                    <div className="overlay-text1">
+                        Lacking Inspiration? Check our blogs!
+                        <div>
+                            <a href="posts/">
+                                <button>See blogs</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <section className="content">
-        <h2>Think of anything you desire to write about and make the world aware of the
-        delightful reading you can create</h2>
-        <img
-          src="https://images.inc.com/uploaded_files/image/1920x1080/getty_541475315_83606.jpg" 
-          alt="homepage" 
-        />
-      </section>
-    </div>
-  );
-}
+            <div className="overlay-text2">
+                Take your project to the next level
+                <div>
+                        <a href="register/">
+                            <button className='button3'>Start Now</button>
+                        </a>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-export default App;
+Homepage.propTypes = {};
+
+export default Homepage;

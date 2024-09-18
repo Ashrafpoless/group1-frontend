@@ -1,15 +1,10 @@
-
 import { NavLink } from 'react-router-dom';
-import {  Nav, NavDropdown } from 'react-bootstrap';
-
-
+import { Nav, NavDropdown } from 'react-bootstrap';
 
 import logo from '../../assets/img/logo10.png';
 import './Header.css';
 
 const Header = () => {
-    
-
     return (
         <nav>
             <div className="nav-container">
@@ -21,7 +16,9 @@ const Header = () => {
 
                 <div className="links">
                     <Nav.Link href="/posts">Posts</Nav.Link>
-                    <Nav.Link className="write" href="/create">Write</Nav.Link>
+                    <Nav.Link className="write" href="/create">
+                        Write
+                    </Nav.Link>
                     <NavDropdown title="Categories" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/?cat=art">
                             ART
@@ -48,8 +45,8 @@ const Header = () => {
                     </NavDropdown>
                 </div>
                 <div className="user">
-                <Nav.Link href="/register">Register</Nav.Link>
-                <Nav.Link href="/login">login</Nav.Link>
+                    <Nav.Link href="/register">Register</Nav.Link>
+                    <Nav.Link href="/login">login</Nav.Link>
                 </div>
             </div>
         </nav>

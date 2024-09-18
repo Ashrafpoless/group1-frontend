@@ -1,56 +1,56 @@
 * {
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
-  }
-  
-  .auth-container {
+}
+
+.auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f0f2f5;
-  }
-  
-  .form-container {
+}
+
+.form-container {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
     padding: 40px;
     text-align: center;
-  }
-  
-  .app-header h1 {
+}
+
+.app-header h1 {
     font-size: 28px;
     color: #333;
-  }
-  
-  h2 {
+}
+
+h2 {
     font-size: 24px;
     color: #444;
     margin-bottom: 20px;
-  }
-  
-  form {
+}
+
+form {
     display: flex;
     flex-direction: column;
-  }
-  
-  input {
+}
+
+input {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
-  }
-  
-  button {
+}
+
+button {
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -58,37 +58,36 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #0056b3;
-  }
-  
-  .social-login {
+}
+
+.social-login {
     background-color: #db4437;
     margin-top: 10px;
-  }
-  
-  .forgot-password {
+}
+
+.forgot-password {
     margin-top: 10px;
-  }
-  
-  .forgot-password a {
+}
+
+.forgot-password a {
     color: #007bff;
     text-decoration: none;
-  }
-  
-  .toggle-link {
+}
+
+.toggle-link {
     margin-top: 20px;
     font-size: 14px;
-  }
-  
-  .toggle-link a {
+}
+
+.toggle-link a {
     color: #007bff;
     cursor: pointer;
-  }
-  
-  .toggle-link a:hover {
+}
+
+.toggle-link a:hover {
     text-decoration: underline;
-  }
-  
+}

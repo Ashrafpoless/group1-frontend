@@ -1,12 +1,14 @@
 .footer {
-    margin-top: 100px;
+    margin-top: 0px;
     padding: 30px 40px;
     background-color: var(--color-gray-700);
     color: var(--color-white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: absolute;
+    right: 0%;
+    left: 0%;
 }
 
 .footer img {
@@ -28,8 +30,7 @@
     color: white;
 }
 
-
-.icons{
+.icons {
     background-color: aliceblue;
     display: inline-block;
     margin: 15px;
@@ -38,7 +39,6 @@
     border-radius: var(--radius-2);
 }
 
-.icons:hover{
+.icons:hover {
     background-color: var(--color-purple-300);
-    
 }

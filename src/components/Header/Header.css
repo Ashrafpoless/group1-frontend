@@ -34,9 +34,7 @@ nav {
     gap: 20px;
 }
 
-
-
-.write  {
+.write {
     background-color: var(--color-purple-300);
     width: 55px;
     height: 55px;
@@ -71,4 +69,3 @@ nav {
     font-family: 'Poppins', sans-serif;
     color: var(--color-gray-900);
 }
-
