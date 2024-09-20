@@ -1,6 +1,6 @@
-import { FaFacebookF } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { FaFacebookF } from 'react-icons/fa';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 // import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import './Footer.css';
@@ -18,13 +18,21 @@ const Footer = () => {
                 </p>
             </div>
             <div className="copyright">
-                <p>All the copyright  is reserved for &quot;Hack Your Future&quot; Group One.</p>
+                <p>
+                    All the copyright is reserved for &quot;Hack Your
+                    Future&quot; Group One.
+                </p>
             </div>
-            <div >
-                <Link className="icons" to={'/'}><FaFacebookF /></Link> 
-                <Link className="icons" to={'/'}><FaLinkedinIn /></Link>
-                <Link className="icons" to={'/'}><FaGithub /></Link> 
-                
+            <div>
+                <Link className="icons" to={'/'}>
+                    <FaFacebookF />
+                </Link>
+                <Link className="icons" to={'/'}>
+                    <FaLinkedinIn />
+                </Link>
+                <Link className="icons" to={'/'}>
+                    <FaGithub />
+                </Link>
             </div>
         </footer>
     );

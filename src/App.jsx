@@ -12,7 +12,6 @@ import EditPost from './pages/EditPost/EditPost';
 
 import './App.css';
 
-
 function App() {
     const Router = createBrowserRouter([
         {

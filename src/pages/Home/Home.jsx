@@ -1,12 +1,76 @@
+import React from 'react';
+import './Home.css';
+const Homepage = () => {
+    return (
+        <div className="homepage">
+            <div className="image-text-section1">
+                <div className="image-container1">
+                    <img
+                        src="https://www.esstudioediciones.com/blog/libros-publicar-escribir-autoedicion.jpg"
+                        alt="Image 1"
+                    />
+                    <div className="overlay-text1">
+                        With Blog, 'Imagination' is limitless
+                        <a href="register/">
+                            <button>Get Started</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-// import PropTypes from 'prop-types'
-import './Home.css'
-const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+            <div class="container">
+                <div class="column">
+                    <h2>Build a blog</h2>
+                    <p>
+                        Write freely while experience our intuitive platform for
+                        blogging
+                    </p>
+                </div>
+                <div class="column">
+                    <h2>Manage your projects</h2>
+                    <p>
+                        Streamline your day-to-day with Blog, tailored to your
+                        needs.
+                    </p>
+                </div>
+                <div class="column">
+                    <h2>Grow online</h2>
+                    <p>
+                        Expand your reach and share your blogs with your
+                        network.
+                    </p>
+                </div>
+            </div>
 
-Home.propTypes = {}
+            <div className="image-text-section1">
+                <div className="image-container1">
+                    <img
+                        src="https://educacionencasacolombia.com/wp-content/uploads/2022/09/escritor.jpg"
+                        alt="image3"
+                    />
+                    <div className="overlay-text1">
+                        Lacking Inspiration? Check our blogs!
+                        <div>
+                            <a href="posts/">
+                                <button>See blogs</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-export default Home
+            <div className="overlay-text2">
+                Take your project to the next level
+                <div>
+                    <a href="register/">
+                        <button className="button3">Start Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+Homepage.propTypes = {};
+
+export default Homepage;

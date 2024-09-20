@@ -61,8 +61,14 @@ const Posts = () => {
                                     <h1>{post.title}</h1>
                                 </Link>
                                 <p>{post.desc}</p>
-                                <button><Link className="link" to={`/post/${post.id}`}>Read More
-                                </Link> </button>
+                                <button>
+                                    <Link
+                                        className="link"
+                                        to={`/post/${post.id}`}
+                                    >
+                                        Read More
+                                    </Link>{' '}
+                                </button>
                             </div>
                         </div>
                     ))}

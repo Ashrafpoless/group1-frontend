@@ -10,7 +10,8 @@ nav {
     left: 0;
     z-index: 1;
     border-bottom: 4px solid var(--color-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(80px);
+    background-color: white;
 }
 .nav-container {
     width: 92%;
@@ -33,9 +34,7 @@ nav {
     gap: 20px;
 }
 
-
-
-.write  {
+.write {
     background-color: var(--color-purple-300);
     width: 55px;
     height: 55px;
@@ -70,4 +69,3 @@ nav {
     font-family: 'Poppins', sans-serif;
     color: var(--color-gray-900);
 }
-
