@@ -12,7 +12,7 @@ const Register = () => {
         password: "",
         verifyPassword:""
     });
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
     const navigate = useNavigate();
     const handelChange = (e)=>{
         setInputs(prev => ({...prev, [e.target.name]: e.target.value}))
