@@ -46,7 +46,7 @@ section {
 }
 
 .container {
-    width: var(--container-width-lg);
+    width: 84%;
     margin-inline: auto;
 }
 

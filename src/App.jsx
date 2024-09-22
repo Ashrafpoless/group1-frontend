@@ -9,9 +9,12 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import CreatePost from './pages/CreatePost/CreatePost';
 import EditPost from './pages/EditPost/EditPost';
+import UserProfile from './pages/Userprofile/Userprofile';
+import Dashboard from './pages/Dashboard/Dashboard';
+
+import AuthContextProvider from './context/AuthContext';
 
 import './App.css';
-
 function App() {
     const Router = createBrowserRouter([
         {
@@ -25,14 +28,18 @@ function App() {
                 { path: 'register', element: <Register /> },
                 { path: 'login', element: <Login /> },
                 { path: 'create', element: <CreatePost /> },
-                { path: 'post/:id/edit', element: <EditPost /> }
+                { path: 'post/:id/edit', element: <EditPost /> },
+                { path: 'profile/:id', element: <UserProfile /> },
+                { path: 'myposts/:id', element: <Dashboard /> }
             ]
         }
     ]);
 
     return (
         <>
-            <RouterProvider router={Router} />
+            <AuthContextProvider>
+                <RouterProvider router={Router} />
+            </AuthContextProvider>
         </>
     );
 }

@@ -1,108 +1,117 @@
-// src/PostDetail.js
-
-import {useState} from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import axios from 'axios';
+import getText from '../../utils/getText.js';
+import Swal from 'sweetalert2';
+import Menu from '../../components/Menu/Menu.jsx';
+import { AuthContext } from '../../context/AuthContext';
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, FacebookIcon, TwitterIcon, LinkedinIcon } from 'react-share';
 
 import './PostDetails.css';
 
-const postData = [
-  {
-    id: 1,
-    title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-    img: 'https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 2,
-    title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-    img: 'https://images.pexels.com/photos/6489663/pexels-photo-6489663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 3,
-    title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-    img: 'https://images.pexels.com/photos/4230630/pexels-photo-4230630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-  {
-    id: 4,
-    title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-    img: 'https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  },
-];
-
 const PostDetails = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [posts, setPosts] = useState(postData);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editPost, setEditPost] = useState({title:'', desc:''});
-  
-  const post = posts.find((p) => p.id === parseInt(id));
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [post, setPost] = useState({});
 
-  if (!post) {
-    return <h1>Post not found</h1>;
-  }
 
-  const handleDelete = () => {
-    const filteredPosts = posts.filter((p) => p.id !== post.id);
-    setPosts(filteredPosts);
-    navigate('/'); 
-  };
+    const { currentUser } = useContext(AuthContext);
 
-  const handleEdit = () => {
-    setIsEditing(true);
-    setEditPost({ title: post.title, desc: post.desc });
-  };
 
-  const handleSave = () => {
-    const updatedPosts = posts.map((p) => 
-      p.id === post.id ? { ...p, title: editPost.title, desc: editPost.desc } : p
+
+    // share buttons
+    const url = `localhost:5173${location.pathname}`;
+    const title = 'Check out this website!';
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const res = await axios.get(
+                    `http://localhost:5050/api/posts/${id}`
+                );
+                setPost(res.data[0]);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchPosts();
+    }, [id]);
+
+
+    const handleDelete = async() => {
+        Swal.fire({
+            title:'Are You Sure',
+            text: `You won't be able to revert this!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: " Delete",
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed){
+                try {
+                axios.delete(`http://localhost:5050/api/posts/${id}`, {
+                withCredentials: true
+            });
+        } catch (err) {
+            console.log(err);
+        }
+                Swal.fire('Deleted', "Your Blog Has Been Deleted", 'success');
+                navigate('/');
+            }else if(result.dismiss === Swal.DismissReason.cancel){
+            Swal.fire('Cancelled', 'Your File is Safe :)', 'error')
+        }
+        })
+    };
+
+
+    return (
+        <div className="postDetail container">
+            <div className="post_content">
+                <img src={post?.postImg} alt="my car" />
+                <div className="post_user">
+                    {post.userImg && <img src={post.userImg} alt="" />}
+                    <div className="info">
+                        <span>{post.username}</span>
+                        <p>Posted {moment(post.date).fromNow()}</p>
+                    </div>
+                    {currentUser && currentUser.username === post.username && (
+                        <div className="edit">
+                            <Link to={`/create?edit=${id}`} state={post}>
+                                <img src="../../img/edit.png" alt="Edit" />
+                            </Link>
+
+                            <img
+                                onClick={handleDelete}
+                                src="../../img/delete.png"
+                                alt="Delete"
+                            />
+                        </div>
+                        
+                    )}
+                </div>
+                <h1>{post.title}</h1>
+                {getText(post.content)}
+                <p>views : {post.view}</p>
+                {currentUser && <div>
+                    <FacebookShareButton url={url} quote={title}>
+                        <FacebookIcon size={32} round={true} />
+                    </FacebookShareButton>
+                        
+                        <LinkedinShareButton url={url} title={title}>
+                            <LinkedinIcon size={32} round={true} />
+                        </LinkedinShareButton >
+                        <TwitterShareButton url={url} quote={title}>
+                            <TwitterIcon size={32} round={true}/>
+                        </TwitterShareButton>
+                        </div>}
+            </div>
+            <div className="menu">
+                <Menu cat={post.cat} />
+            </div> 
+        </div>
     );
-    setPosts(updatedPosts);
-    setIsEditing(false);
-  };
-
-
-  return (
-    <div className="post-detail">
-      {isEditing ? (
-        <>
-          <div className="content">           
-            <input
-              type="text"
-              value={editPost.title}
-              onChange={(e) => setEditPost({ ...editPost, title: e.target.value })}
-              style={{ fontSize: '24px', marginBottom: '20px' }}
-            />
-            <textarea
-              value={editPost.desc}
-              onChange={(e) => setEditPost({ ...editPost, desc: e.target.value })}
-              style={{ fontSize: '18px', width: '100%', height: '150px' }}
-            />
-            <button onClick={() => navigate(-1)}>Back</button>
-            <button onClick={handleSave}>Save</button>
-            <button onClick={() => setIsEditing(false)}>Cancel</button>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="img">
-            <img src={post.img} alt={post.title} />
-          </div>
-          <div className="content">
-            <h1>{post.title}</h1>
-            <p>{post.desc}</p>
-            <button onClick={() => navigate(-1)}>Back</button>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        </>
-      )}
-    </div>
-  );
 };
 
 export default PostDetails;

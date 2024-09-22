@@ -1,129 +1,95 @@
-/* PostDetail.css */
-
-.post-detail {
-    margin-top: 150px;
+.postDetail {
+    margin-top: 30px;
     display: flex;
-    flex-direction: column;
     gap: 50px;
-    padding: 20px;
 }
-
-.post-detail .img {
-    flex: 2;
-    position: relative;
-    margin: auto;
-  }
-
-.post-detail .img img {
-    width: 100%;
-    max-height: 600px;
-    object-fit: contain;
-    border-radius: 10px;
-}
-
-.post-detail .img::after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-purple-300);
-    position: absolute;
-    top: 20px;
-    left: -20px;
-    z-index: -1;
-    border-radius: 10px;
-}
-
-.post-detail .content {
-    flex: 3;
+.post_content {
+    flex: 5;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+}
+.post_content img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+.post_user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.post_user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+span {
+    font-weight: bold;
+}
+    
+.edit {
+    display: flex;
+    gap: 5px;
+}
+.edit img{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
 }
 
-.post-detail .content h1 {
-    font-size: 48px;
-    margin-top: 10px;
-    color: var(--color-purple-500);
-    margin: auto;
-    max-width:fit-content;
-}
 
-.post-detail .content p {
-    font-size: 20px;
-    line-height: 1.6;
+.edit h1 {
+    font-size: 42px;
     color: #333;
-    max-width: 800px;
-    margin: auto;
-
 }
 
-.post-detail button {
+.edit p {
+    text-align: justify;
+    line-height: 30px;
+}
+    
+
+.menu {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.menu h1 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+}
+
+.post {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+}
+.post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post h2 {
+    color: #555;
+    text-wrap: wrap;
+}
+
+.post button {
     width: max-content;
-    padding: 10px 20px;
-    border: 1px solid var(--color-purple-500);
+    padding: 7.5px 15px;
+    border: 1px solid teal;
     cursor: pointer;
     background-color: white;
-    color: var(--color-purple-500);
-    margin-right: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: teal;
 }
-
-.post-detail button:hover {
+.post button:hover {
     border: 1px solid white;
-    background-color: var(--color-purple-300);
+    background-color: #b9e7e7;
     color: #000;
-}
-
-.post-detail input[type="text"],
-.post-detail textarea {
-    padding: 10px;
-    border: 1px solid var(--color-purple-500);
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.post-detail input[type="text"]:focus,
-.post-detail textarea:focus {
-    border-color: var(--color-purple-300);
-    outline: none;
-}
-
-.post-detail textarea {
-    height: 150px;
-    resize: none;
-}
-
-/* Cancel and save buttons */
-.post-detail .content button {
-    margin-left: auto;
-}
-
-.post-detail .content button:nth-child(2) {
-    background-color: #ff4d4d;
-    color: white;
-    border: 1px solid #ff4d4d;
-}
-
-.post-detail .content button:nth-child(2):hover {
-    background-color: white;
-    color: #ff4d4d;
-    border: 1px solid #ff4d4d;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .post-detail .img img {
-        max-height: 400px;
-    }
-
-    .post-detail .content h1 {
-        font-size: 32px;
-    }
-
-    .post-detail .content p {
-        font-size: 16px;
-    }
 }
