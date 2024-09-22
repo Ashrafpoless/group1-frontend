@@ -1,10 +1,25 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav, NavDropdown } from 'react-bootstrap';
+import { AuthContext } from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 
 import logo from '../../assets/img/logo10.png';
+
 import './Header.css';
 
 const Header = () => {
+    const { currentUser, logout } = useContext(AuthContext);
+
+    const handelClick = () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Sorry...',
+            text: 'You Need to Sign In',
+            footer: '<a href="login">Sign In</a>'
+        });
+    };
+
     return (
         <nav>
             <div className="nav-container">
@@ -16,37 +31,54 @@ const Header = () => {
 
                 <div className="links">
                     <Nav.Link href="/posts">Posts</Nav.Link>
-                    <Nav.Link className="write" href="/create">
-                        Write
-                    </Nav.Link>
+                    {currentUser ? (
+                        <Nav.Link className="write" href="/create">
+                            Write
+                        </Nav.Link>
+                    ) : (
+                        <Nav.Link className="write" onClick={handelClick}>
+                            Write
+                        </Nav.Link>
+                    )}
                     <NavDropdown title="Categories" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/?cat=art">
+                        <NavDropdown.Item href="/posts/?cat=art">
                             ART
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/?cat=science">
+                        <NavDropdown.Item href="/posts/?cat=science">
                             SCIENCE
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/?cat=technology">
+                        <NavDropdown.Item href="/posts/?cat=technology">
                             TECHNOLOGY
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/?cat=cinema">
+                        <NavDropdown.Item href="/posts/?cat=cinema">
                             CINEMA
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/?cat=design">
+                        <NavDropdown.Item href="/posts/?cat=design">
                             DESIGN
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/?cat=food">
+                        <NavDropdown.Item href="/posts/?cat=food">
                             FOOD
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                            Separated link
+                        <NavDropdown.Item href="/posts/?cat=general">
+                            General
                         </NavDropdown.Item>
                     </NavDropdown>
                 </div>
                 <div className="user">
-                    <Nav.Link href="/register">Register</Nav.Link>
-                    <Nav.Link href="/login">login</Nav.Link>
+                    {currentUser ? (
+                        <Nav.Link href="/Logout" onClick={logout}>
+                            {' '}
+                            Logout
+                        </Nav.Link>
+                    ) : (
+                        <Nav.Link href="/login">Sign in</Nav.Link>
+                    )}
+                    {currentUser ? (
+                        <Nav.Link href={`/profile/${currentUser.id}`}>
+                            {currentUser.username}
+                        </Nav.Link>
+                    ) : null}
                 </div>
             </div>
         </nav>

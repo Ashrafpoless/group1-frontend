@@ -1,66 +1,74 @@
-// import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types'
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Pagination from 'react-bootstrap/Pagination';
+import getText from '../../utils/getText';
+import axios from 'axios';
 
 import './Posts.css';
 
 const Posts = () => {
-    // const [posts, setPosts] = useState([]);
-    // const cat = useLocation().search
+    const [posts, setPosts] = useState([]);
+    const cat = useLocation().search;
+    console.log(cat);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numberOfPages, setNumberOfPages] = useState(null);
+    const pageSize = 8;
+    const lastIndex = currentPage * pageSize;
+    const firstIndex = lastIndex - pageSize;
+    const paginatedPosts = posts.slice(firstIndex, lastIndex)
+    
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const res = await axios.get(
+                    `http://localhost:5050/api/posts${cat}`
+                );
+                setPosts(res.data);
+                setNumberOfPages(Math.ceil(res.data.length / pageSize));
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
-    // useEffect(()=>{
-    //     const fetchPosts = async()=>{
-    //         try {
-    //             const res = await axios.get(`http://localhost:8800/api/posts${cat}`);
-    //             setPosts(res.data)
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     };
+        fetchPosts();
+    }, [cat]);
 
-    //     fetchPosts();
-    // },[cat])
 
-    const posts = [
-        {
-            id: 1,
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-            desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-            img: 'https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-        },
-        {
-            id: 2,
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-            desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-            img: 'https://images.pexels.com/photos/6489663/pexels-photo-6489663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-        },
-        {
-            id: 3,
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-            desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-            img: 'https://images.pexels.com/photos/4230630/pexels-photo-4230630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-        },
-        {
-            id: 4,
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-            desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!',
-            img: 'https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    const prePage = () => {
+        if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1);
+        } else {
+            return;
         }
-    ];
+    };
+
+    const nextPage = () => {
+        if (currentPage !== 100) {
+            setCurrentPage(currentPage + 1);
+        } else {
+            return;
+        }
+    };
+
+    const changeCPage = (id) => {
+        setCurrentPage(id);
+    };
+    
+
     return (
         <>
             <div className="home-posts">
                 <div className="container posts">
-                    {posts.map((post) => (
-                        <div className="post" key={post.id}>
-                            <div className="img">
+                    {paginatedPosts.map((post) => (
+                        <div className="one_post" key={post.id}>
+                            <div className="one-post_img">
                                 <img src={post.img} alt={post.title} />
                             </div>
-                            <div className="content">
+                            <div className="one-post_content">
                                 <Link className="link" to={`/post/${post.id}`}>
                                     <h1>{post.title}</h1>
                                 </Link>
-                                <p>{post.desc}</p>
+                                <p>{getText(post.content)}</p>
                                 <button>
                                     <Link
                                         className="link"
@@ -72,6 +80,22 @@ const Posts = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div>
+                    <Pagination className='pagination' size='lg'>
+                        <Pagination.First onClick={()=>changeCPage(1)}/>
+                        <Pagination.Prev on onClick={prePage} />
+                        
+                        {[...Array(numberOfPages).keys()].map((n, i) => (
+                            <li key={i}>
+                                <Pagination.Item  onClick={()=> changeCPage(i+1)}>{i + 1}</Pagination.Item>
+                            </li>
+                        ))}
+                        
+                        <Pagination.Next onClick={nextPage}/>
+                        <Pagination.Last onClick={()=>changeCPage(numberOfPages)}/>
+                    </Pagination>
                 </div>
             </div>
 
@@ -92,6 +116,7 @@ const Posts = () => {
     );
 };
 
-Posts.propTypes = {};
+
 
 export default Posts;
+
