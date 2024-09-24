@@ -1,4 +1,6 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+
+
 import './Home.css';
 const Homepage = () => {
     return (
@@ -10,10 +12,10 @@ const Homepage = () => {
                         alt="Image 1"
                     />
                     <div className="overlay-text1">
-                        With Blog, 'Imagination' is limitless
-                        <a href="register/">
-                            <button>Get Started</button>
-                        </a>
+                        With Blog, &lsquo;Imagination&lsquo; is limitless 
+                        
+                            <button className='button-two'> <Link to='/register'>Get Started</Link></button>
+                        
                     </div>
                 </div>
             </div>
@@ -51,9 +53,9 @@ const Homepage = () => {
                     <div className="overlay-text1">
                         Lacking Inspiration? Check our blogs!
                         <div>
-                            <a href="posts/">
-                                <button>See blogs</button>
-                            </a>
+                            
+                                <button className='button-two'><Link to='/posts'>See blogs</Link></button>
+                            
                         </div>
                     </div>
                 </div>
@@ -63,7 +65,7 @@ const Homepage = () => {
                 Take your project to the next level
                 <div>
                     <a href="register/">
-                        <button className="button3">Start Now</button>
+                        <button className="button_three"> <Link to='/register'>Start Now</Link> </button>
                     </a>
                 </div>
             </div>

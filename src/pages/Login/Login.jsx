@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import  {AuthContext}  from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 
 import './Login.css';
 
@@ -22,12 +23,28 @@ const handelChange = (e)=>{
     setInputs(prev => ({...prev, [e.target.name]: e.target.value}))
 };
 
-console.log(inputs);
+  const toast =  Swal.mixin({
+    toast: true,
+    position: "center",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  })
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
         
           await login(inputs);
+          if(login()){
+            toast.fire({
+              icon: "success",
+              title: "Signed in successfully"
+            });
+          }
           navigate('/');
       
       } catch (err) {

@@ -3,19 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './Dashboard.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { Pagination } from 'react-bootstrap';
 
 const Dashboard = () => {
     const [myPosts, setMyPosts] = useState([]);
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numberOfPages, setNumberOfPages] = useState(null);
+    const pageSize = 10;
+    const lastIndex = currentPage * pageSize;
+    const firstIndex = lastIndex - pageSize;
+    const paginatedPosts = myPosts.slice(firstIndex, lastIndex)
+
     useEffect(() => {
         const fetchMyPosts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/users/${currentUser.id}`
+                    `http://localhost:5050/api/users/myposts/${currentUser.id}`
                 );
-                setMyPosts(res.data);
+                setMyPosts(res.data.reverse());
+                setNumberOfPages(Math.ceil(res.data.length / pageSize));
             } catch (err) {
                 console.log(err);
             }
@@ -25,21 +35,57 @@ const Dashboard = () => {
     }, [currentUser.id]);
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:5050/api/posts/${id}`, {
-                withCredentials: true
-            });
-            navigate('#');
-        } catch (err) {
-            console.log(err);
+        Swal.fire({
+            title: 'Are You Sure',
+            text: `You won't be able to revert this!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: ' Delete',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                try {
+                    axios.delete(`http://localhost:5050/api/posts/${id}`, {
+                        withCredentials: true
+                    });
+                    console.log('send a request');
+                } catch (err) {
+                    console.log(err);
+                }
+                Swal.fire('Deleted', 'Your Post Has Been Deleted', 'success');
+                navigate(`/profile/${currentUser.id}`);
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('Cancelled', 'Your post is Safe :)', 'error');
+            }
+        });
+    };
+
+    const prePage = () => {
+        if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1);
+        } else {
+            return;
         }
     };
+
+    const nextPage = () => {
+        if (currentPage < numberOfPages) {
+            setCurrentPage(currentPage + 1);
+        } else {
+            return;
+        }
+    };
+
+    const changeCPage = (id) => {
+        setCurrentPage(id);
+    };
+    
 
     return (
         <section className="dashboard">
             {myPosts.length ? (
                 <div className="dashboard_container">
-                    {myPosts.map((post) => {
+                    {paginatedPosts.map((post) => {
                         return (
                             <article key={post.id} className="dashboard_post">
                                 <div className="post_info">
@@ -56,18 +102,19 @@ const Dashboard = () => {
                                         View
                                     </Link>
                                     <Link
-                                        to={`/write?edit=${post.id}`}
+                                        to={`/create?edit=${post.id}`}
                                         state={post}
                                         className="btn_edit"
                                     >
                                         Edit
                                     </Link>
-                                    <Link
-                                        onChange={handleDelete}
+                                    <button
+                                        type='submit'
+                                        onClick={()=>handleDelete(post.id)}
                                         className="btn_delete"
                                     >
                                         Delete
-                                    </Link>
+                                    </button>
                                 </div>
                             </article>
                         );
@@ -76,6 +123,23 @@ const Dashboard = () => {
             ) : (
                 <h2 className="dashboard_center"> You have no posts yet</h2>
             )}
+            <div>{myPosts.length > 10 ? 
+                <Pagination className='pagination' size='lg'>
+                <Pagination.First onClick={()=>changeCPage(1)}/>
+                <Pagination.Prev on onClick={prePage} />
+                
+                {[...Array(numberOfPages).keys()].map((n, i) => (
+                    <li key={i}>
+                        <Pagination.Item  onClick={()=> changeCPage(i+1)}>{i + 1}</Pagination.Item>
+                    </li>
+                ))}
+                
+                <Pagination.Next onClick={nextPage}/>
+                <Pagination.Last onClick={()=>changeCPage(numberOfPages)}/>
+            </Pagination>
+                : null
+                }
+                </div>
         </section>
     );
 };

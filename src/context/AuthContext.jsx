@@ -3,10 +3,14 @@ import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext();
 
+ 
+
 export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem('user')) || null
     );
+
+   
 
     const login = async (inputs) => {
         const res = await axios.post(
@@ -22,8 +26,10 @@ export const AuthContextProvider = ({ children }) => {
             'http://localhost:5050/api/auth/logout',
             {},
             { withCredentials: true }
-        );
+        ); 
+
         setCurrentUser(null);
+       
     };
 
     useEffect(() => {

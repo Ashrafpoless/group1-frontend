@@ -64,8 +64,16 @@
     font-weight: bold;
 }
 
-.button3 {
+.button-two a{
+    color: white;
+}
+
+.button_three {
     background-color: black;
+}
+
+.button_three a{
+    color:white;
 }
 
 .container {

@@ -30,6 +30,12 @@ const Register = () => {
             }
 
             await axios.post("http://localhost:5050/api/auth/register", inputs)
+            Swal.fire({
+                icon: "success",
+                title: "You have been registered successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
             navigate('/login');
         
         } catch (err) {

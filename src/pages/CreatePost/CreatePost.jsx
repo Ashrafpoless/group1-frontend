@@ -19,10 +19,8 @@ const CreatePost = () => {
 
     const upload = async () => {
         if (!file) return '';
-
         const formData = new FormData();
         formData.append('file', file);
-
         try {
             const res = await axios.post(
                 'http://localhost:5050/api/upload',
@@ -47,9 +45,9 @@ const CreatePost = () => {
                 ? await axios.put(
                       `http://localhost:5050/api/posts/${state.id}`,
                       {
-                          title,
-                          content: value,
-                          cat,
+                            title,
+                            content: value,
+                            cat,
                           img: imgUrl
                       }
                   )
@@ -59,9 +57,9 @@ const CreatePost = () => {
                       img: imgUrl,
                       cat,
                       uid,
-                      date: moment(Date.now()).format('YYY-MM-DD HH:mm:ss')
+                      date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
                   });
-            navigate('/');
+            navigate(`/myposts/${uid}`);
         } catch (error) {
             console.log(error);
         }

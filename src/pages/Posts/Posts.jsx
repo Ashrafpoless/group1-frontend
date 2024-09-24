@@ -9,13 +9,14 @@ import './Posts.css';
 const Posts = () => {
     const [posts, setPosts] = useState([]);
     const cat = useLocation().search;
-    console.log(cat);
+    const [search, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(null);
     const pageSize = 8;
     const lastIndex = currentPage * pageSize;
     const firstIndex = lastIndex - pageSize;
-    const paginatedPosts = posts.slice(firstIndex, lastIndex)
+    const paginatedPosts = searchResults.slice(firstIndex, lastIndex)
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -33,6 +34,14 @@ const Posts = () => {
         fetchPosts();
     }, [cat]);
 
+    useEffect(() => {
+        const filteredResults = posts.filter(
+            (post) =>
+                post.content.toLowerCase().includes(search.toLowerCase()) ||
+                post.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setSearchResults(filteredResults.reverse());
+    }, [posts, search]);
 
     const prePage = () => {
         if (currentPage !== 1) {
@@ -43,7 +52,7 @@ const Posts = () => {
     };
 
     const nextPage = () => {
-        if (currentPage !== 100) {
+        if (currentPage < numberOfPages) {
             setCurrentPage(currentPage + 1);
         } else {
             return;
@@ -58,6 +67,16 @@ const Posts = () => {
     return (
         <>
             <div className="home-posts">
+            <form className="searchForm container" onSubmit={(e) => e.preventDefault()}>
+                {/* <label htmlFor="search">Search Posts</label> */}
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search Posts"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </form>
                 <div className="container posts">
                     {paginatedPosts.map((post) => (
                         <div className="one_post" key={post.id}>
@@ -66,9 +85,13 @@ const Posts = () => {
                             </div>
                             <div className="one-post_content">
                                 <Link className="link" to={`/post/${post.id}`}>
-                                    <h1>{post.title}</h1>
+                                    <h1>{post.title.length <= 25
+                    ? post.title
+                    : `${post.title.slice(0, 25)}. . .  .`}</h1>
                                 </Link>
-                                <p>{getText(post.content)}</p>
+                                <p>{getText(post.content.length <= 500
+                    ? post.content
+                    : `${post.content.slice(0, 500)} . . . . .`)}</p>
                                 <button>
                                     <Link
                                         className="link"
@@ -82,20 +105,22 @@ const Posts = () => {
                     ))}
                 </div>
 
-                <div>
-                    <Pagination className='pagination' size='lg'>
-                        <Pagination.First onClick={()=>changeCPage(1)}/>
-                        <Pagination.Prev on onClick={prePage} />
-                        
-                        {[...Array(numberOfPages).keys()].map((n, i) => (
-                            <li key={i}>
-                                <Pagination.Item  onClick={()=> changeCPage(i+1)}>{i + 1}</Pagination.Item>
-                            </li>
-                        ))}
-                        
-                        <Pagination.Next onClick={nextPage}/>
-                        <Pagination.Last onClick={()=>changeCPage(numberOfPages)}/>
-                    </Pagination>
+                <div>{posts.length > 8 ? 
+                <Pagination className='pagination' size='lg'>
+                <Pagination.First onClick={()=>changeCPage(1)}/>
+                <Pagination.Prev on onClick={prePage} />
+                
+                {[...Array(numberOfPages).keys()].map((n, i) => (
+                    <li key={i}>
+                        <Pagination.Item  onClick={()=> changeCPage(i+1)}>{i + 1}</Pagination.Item>
+                    </li>
+                ))}
+                
+                <Pagination.Next onClick={nextPage}/>
+                <Pagination.Last onClick={()=>changeCPage(numberOfPages)}/>
+            </Pagination>
+                : null
+                }
                 </div>
             </div>
 

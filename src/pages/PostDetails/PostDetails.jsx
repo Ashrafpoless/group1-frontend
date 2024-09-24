@@ -6,7 +6,18 @@ import getText from '../../utils/getText.js';
 import Swal from 'sweetalert2';
 import Menu from '../../components/Menu/Menu.jsx';
 import { AuthContext } from '../../context/AuthContext';
-import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, FacebookIcon, TwitterIcon, LinkedinIcon } from 'react-share';
+
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    LinkedinShareButton,
+    FacebookIcon,
+    TwitterIcon,
+    LinkedinIcon,
+    WhatsappShareButton,
+    WhatsappIcon,
+
+} from 'react-share';
 
 import './PostDetails.css';
 
@@ -16,10 +27,7 @@ const PostDetails = () => {
     const location = useLocation();
     const [post, setPost] = useState({});
 
-
     const { currentUser } = useContext(AuthContext);
-
-
 
     // share buttons
     const url = `localhost:5173${location.pathname}`;
@@ -32,46 +40,48 @@ const PostDetails = () => {
                     `http://localhost:5050/api/posts/${id}`
                 );
                 setPost(res.data[0]);
+                console.log(res.data[0].date);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchPosts();
-    }, [id]);
+    }, []);
 
+   
 
-    const handleDelete = async() => {
+    const handleDelete = async () => {
         Swal.fire({
-            title:'Are You Sure',
+            title: 'Are You Sure',
             text: `You won't be able to revert this!`,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: " Delete",
-            cancelButtonText: "Cancel"
+            confirmButtonText: ' Delete',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
-            if (result.isConfirmed){
+            if (result.isConfirmed) {
                 try {
-                axios.delete(`http://localhost:5050/api/posts/${id}`, {
-                withCredentials: true
-            });
-        } catch (err) {
-            console.log(err);
-        }
-                Swal.fire('Deleted', "Your Blog Has Been Deleted", 'success');
+                    axios.delete(`http://localhost:5050/api/posts/${id}`, {
+                        withCredentials: true
+                    });
+                } catch (err) {
+                    console.log(err);
+                }
+                Swal.fire('Deleted', 'Your Post Has Been Deleted', 'success');
                 navigate('/');
-            }else if(result.dismiss === Swal.DismissReason.cancel){
-            Swal.fire('Cancelled', 'Your File is Safe :)', 'error')
-        }
-        })
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('Cancelled', 'Your post is Safe :)', 'error');
+            }
+        });
     };
 
 
     return (
         <div className="postDetail container">
             <div className="post_content">
-                <img src={post?.postImg} alt="my car" />
-                <div className="post_user">
-                    {post.userImg && <img src={post.userImg} alt="" />}
+                <img src={post?.postImg} alt={post?.postImg} />
+                <div className='user_save'>
+                    <div className="post_user"> {post.userImg && <img src={post.userImg} alt={post.username} />}
                     <div className="info">
                         <span>{post.username}</span>
                         <p>Posted {moment(post.date).fromNow()}</p>
@@ -88,28 +98,39 @@ const PostDetails = () => {
                                 alt="Delete"
                             />
                         </div>
-                        
                     )}
+                    </div>
+                    <button>save</button>
                 </div>
                 <h1>{post.title}</h1>
                 {getText(post.content)}
                 <p>views : {post.view}</p>
-                {currentUser && <div>
-                    <FacebookShareButton url={url} quote={title}>
-                        <FacebookIcon size={32} round={true} />
-                    </FacebookShareButton>
-                        
+                {currentUser && (
+                    <div className='share'>
+                        <h4>{post.cat}</h4>
+                        <div>
+                            <WhatsappShareButton url={url} quote={title}>
+                            <WhatsappIcon size={32} round={true} />
+                        </WhatsappShareButton>
+                        <TwitterShareButton url={url} quote={title}>
+                            <TwitterIcon size={32} round={true} />
+                        </TwitterShareButton>
                         <LinkedinShareButton url={url} title={title}>
                             <LinkedinIcon size={32} round={true} />
-                        </LinkedinShareButton >
-                        <TwitterShareButton url={url} quote={title}>
-                            <TwitterIcon size={32} round={true}/>
-                        </TwitterShareButton>
-                        </div>}
+                        </LinkedinShareButton>
+                        <FacebookShareButton url={url} quote={title}>
+                            <FacebookIcon size={32} round={true} />
+                        </FacebookShareButton>
+                        </div>
+                        
+                        
+                    </div>
+                )}
             </div>
+
             <div className="menu">
-                <Menu cat={post.cat} />
-            </div> 
+                {post.cat && <Menu cat={post.cat} />} 
+            </div>
         </div>
     );
 };
