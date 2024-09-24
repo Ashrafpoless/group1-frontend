@@ -1,24 +1,24 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-
-const Menu = ({cat}) => {
-
+const Menu = ({ cat }) => {
     const [posts, setPosts] = useState([]);
-    
-    useEffect(()=>{
-        const fetchPosts = async()=>{
+
+    useEffect(() => {
+        const fetchPosts = async () => {
             try {
-                const res = await axios.get(`http://localhost:5050/api/posts?cat=${cat}`);
-                setPosts(res.data)
+                const res = await axios.get(
+                    `http://localhost:5050/api/posts?cat=${cat}`
+                );
+                setPosts(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
-
         fetchPosts();
-    },[cat])
+    }, [cat]);
 
     return (
         <div className="menu">
@@ -27,7 +27,10 @@ const Menu = ({cat}) => {
                 <div className="post" key={post.id}>
                     <img src={post.img} alt={post.title} />
                     <h2>{post.title}</h2>
-                    <button>Read More</button>
+                    <button>
+                        {' '}
+                        <Link to={`/post/${post.id}`}>Read More</Link>{' '}
+                    </button>
                 </div>
             ))}
         </div>
@@ -37,6 +40,5 @@ const Menu = ({cat}) => {
 Menu.propTypes = {
     cat: PropTypes.string.isRequired
 };
-
 
 export default Menu;

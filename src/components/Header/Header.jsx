@@ -67,7 +67,7 @@ const Header = () => {
                 </div>
                 <div className="user">
                     {currentUser ? (
-                        <Nav.Link href="/Logout" onClick={logout}>
+                        <Nav.Link href="/" onClick={logout}>
                             {' '}
                             Logout
                         </Nav.Link>

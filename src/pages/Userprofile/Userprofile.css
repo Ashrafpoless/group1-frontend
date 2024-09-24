@@ -50,9 +50,25 @@
     visibility: hidden;
 }
 
-.avatar_form label,
+.avatar_form label{
+    background: #6f6af8;
+    color: #fff;
+    font-size: 1.3rem;
+    position: absolute;
+    left: 2rem;
+    bottom: 1.4rem;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+}
+
+.avatar_form label:hover{
+    background-color: #544fdd;
+}
+
 .profile-avatar_btn {
-    background: hsl(240, 48%, 9%);
     color: #fff;
     font-size: 1.3rem;
     position: absolute;
@@ -108,9 +124,11 @@
 
     margin-bottom: 1rem;
 }
+
+
 .profile_btn {
     display: inline-block;
-    width: fit-content;
+    width: 100%;
     padding: 0.5rem 1rem;
     border-radius: 0.6rem;
     background: #fff;
@@ -119,72 +137,8 @@
     transition: all 300ms ease;
     background: #6f6af8;
     color: #fff;
+    margin-bottom: 40px;
 }
-
-/*  ********* from general ********   */
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-.btn:hover{
-    background: var(--color-gray-900);
-    color: var(--color-white);
-}
-
-.center{
-    text-align: center;
-    padding-top: 5rem;
-    margin-inline: auto;
-    display: block;
-    width: 100%;
-}
-
-.error-page h2 {
-    margin-top: 3rem;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-
-input, select, textarea {
-    width: 100%;
-    padding: 0.6rem 1rem;
-    border-radius: var(--radius-1);
-    resize: none;
-}
-
-
-@media screen and (max-width: 800px) {
-    h1{
-        font-size: 2rem;
-    }
-
-    h2{
-        font-size: 1.6rem;
-    }
-
-    h3{
-        font-size: 1.35rem;
-    }
-
-    .container{
-        width: var(--container-width-md);
-    }
-*/
 
 @media screen and (max-width: 800px) {
     .form.profile_form {

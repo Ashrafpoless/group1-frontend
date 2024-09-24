@@ -14,6 +14,17 @@
     height: 500px;
     object-fit: cover;
 }
+
+.user_save{
+    display: flex;
+    justify-content: space-between;
+}
+
+.user_save button{
+    height: 45px;
+    width: 70px;
+}
+
 .post_user {
     display: flex;
     align-items: center;
@@ -49,7 +60,7 @@ span {
     text-align: justify;
     line-height: 30px;
 }
-    
+
 
 .menu {
     flex: 2;
@@ -92,4 +103,10 @@ span {
     border: 1px solid white;
     background-color: #b9e7e7;
     color: #000;
+}
+
+.share{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }

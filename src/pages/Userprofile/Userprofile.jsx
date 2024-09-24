@@ -1,21 +1,79 @@
 // import PropTypes from 'prop-types'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-
+import axios from 'axios';
 import { FaEdit } from 'react-icons/fa';
 import { FaCheck } from 'react-icons/fa';
-
 import './Userprofile.css';
 
 const Userprofile = () => {
-    const [avatar, setAvatar] = useState(null);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [user, setUser] = useState([])
     const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewpassword] = useState('');
-    const [confirmNewPassword, setConfirmNewpassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [file, setFile] = useState(null);
     const { currentUser } = useContext(AuthContext);
+
+
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await axios.get(
+                    `http://localhost:5050/api/users/user/${currentUser.id}`
+                );
+                setUser(res.data[0]);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        fetchUser();
+    }, [currentUser.id, file]);
+
+    
+    const upload = async () => {
+        if (!file) return '';
+        const formData = new FormData();
+        formData.append('file', file);
+        try {
+            const res = await axios.post(
+                'http://localhost:5050/api/upload',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
+            return res.data.url; // Cloudinary URL from the backend
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+        const imgUrl = await upload();
+        try {
+            await axios.put(
+                `http://localhost:5050/api/users/${currentUser.id}`,
+                {
+                    currentPassword,
+                    newPassword,
+                    confirmNewPassword,
+                    img: imgUrl
+                }
+            );
+            setFile(null);
+            setCurrentPassword('');
+            setConfirmNewPassword('');
+            setNewPassword('');
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <section className="profile">
@@ -31,46 +89,40 @@ const Userprofile = () => {
                     {' '}
                     My Favorites
                 </Link>
-
                 <div className="profile_details">
                     <div className="avatar_wrapper">
                         <div className="profile_avatar">
-                            <img src={avatar} alt="" />
+                            <img
+                                src={user.img}
+                                alt={user.username}
+                            />
                         </div>
                         <form className="avatar_form">
                             <input
                                 type="file"
-                                name="avatar"
-                                id="avatar"
-                                onChange={(e) => setAvatar(e.target.files[0])}
+                                name="file"
+                                id="file"
+                                onChange={(e) => setFile(e.target.files[0])}
                                 accept="png, jpg, jpeg"
                             />
-                            <label htmlFor="avatar">
+                            <label htmlFor="file">
                                 {' '}
-                                <FaEdit />
+                                <FaEdit />{' '}
                             </label>
+                            <button
+                                className="profile-avatar_btn"
+                                onClick={handleClick}
+                            >
+                                <FaCheck />
+                            </button>
                         </form>
-                        <button className="profile-avatar_btn">
-                            <FaCheck />
-                        </button>
                     </div>
                     <h1>{currentUser.username}</h1>
                     <form className="form profile_form">
                         <p className="form_error-message">
                             This is an Error message
                         </p>
-                        <input
-                            type="text"
-                            placeholder="username"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+                        <h3>Change The Password</h3>
                         <input
                             type="password"
                             placeholder="Current Password"
@@ -81,17 +133,19 @@ const Userprofile = () => {
                             type="password"
                             placeholder="New Password"
                             value={newPassword}
-                            onChange={(e) => setNewpassword(e.target.value)}
+                            onChange={(e) => setNewPassword(e.target.value)}
                         />
                         <input
                             type="password"
                             placeholder="Confirm New Password"
                             value={confirmNewPassword}
                             onChange={(e) =>
-                                setConfirmNewpassword(e.target.value)
+                                setConfirmNewPassword(e.target.value)
                             }
                         />
-                        <button className="profile_btn">Update Details</button>
+                            <button className="profile_btn" onClick={handleClick}>
+                                Update Password
+                            </button>
                     </form>
                 </div>
             </div>
