@@ -5,6 +5,8 @@ import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import { FaEdit } from 'react-icons/fa';
 import { FaCheck } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+
 import './Userprofile.css';
 
 const Userprofile = () => {
@@ -25,7 +27,11 @@ const Userprofile = () => {
                 );
                 setUser(res.data[0]);
             } catch (err) {
-                console.log(err);
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oops...",
+                    text: `${err.response.data.message}`,
+                });
             }
         };
 
@@ -66,12 +72,20 @@ const Userprofile = () => {
                     img: imgUrl
                 }
             );
+            Swal.fire({
+                title: "Done",
+                icon: "success"
+            });
             setFile(null);
             setCurrentPassword('');
             setConfirmNewPassword('');
             setNewPassword('');
         } catch (err) {
-            console.log(err);
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: `${err.response.data.message}`,
+            });
         }
     };
 
@@ -119,9 +133,9 @@ const Userprofile = () => {
                     </div>
                     <h1>{currentUser.username}</h1>
                     <form className="form profile_form">
-                        <p className="form_error-message">
-                            This is an Error message
-                        </p>
+                        <hr className="form_line"/>
+                           
+                        
                         <h3>Change The Password</h3>
                         <input
                             type="password"
