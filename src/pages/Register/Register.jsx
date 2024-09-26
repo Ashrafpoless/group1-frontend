@@ -10,7 +10,7 @@ const Register = () => {
         username:"",
         email: "",
         password: "",
-        verifyPassword:""
+        confirmPassword:""
     });
     // const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Register = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            if(!inputs.username || !inputs.email || !inputs.password || !inputs.verifyPassword){
+            if(!inputs.username || !inputs.email || !inputs.password || !inputs.confirmPassword){
                 return Swal.fire({
                     title:'Please Fill All The fields',
                     text: `SomeThing Missing`,
@@ -39,7 +39,11 @@ const Register = () => {
             navigate('/login');
         
         } catch (err) {
-            setError(err.response.data);
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: `${err.response.data.message}`,
+            });
         }
     };
 
@@ -66,9 +70,9 @@ const Register = () => {
                         />
                         <input
                             type="password"
-                            placeholder="Verify Password"
+                            placeholder="confirm Password"
                             required
-                            name='verifyPassword' onChange={handelChange}
+                            name='confirmPassword' onChange={handelChange}
                         />
                         <div className="button-group">
                             <button onClick={handleSubmit}>Sign up</button>

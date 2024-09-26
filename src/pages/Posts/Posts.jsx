@@ -3,11 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
 import getText from '../../utils/getText';
 import axios from 'axios';
+import Loading from '../../components/Loading/Loading'
 
 import './Posts.css';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const cat = useLocation().search;
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -26,8 +29,11 @@ const Posts = () => {
                 );
                 setPosts(res.data);
                 setNumberOfPages(Math.ceil(res.data.length / pageSize));
+                
             } catch (err) {
-                console.log(err);
+                setError(err.response.data.message)
+            }finally{
+                setLoading(false)
             }
         };
 
@@ -67,6 +73,10 @@ const Posts = () => {
     return (
         <>
             <div className="home-posts">
+                {loading && <Loading/>}
+                {error && <div className='error-message'><h3>{error}</h3></div>}
+                {!error && !loading && paginatedPosts &&
+                <>
             <form className="searchForm container" onSubmit={(e) => e.preventDefault()}>
                 {/* <label htmlFor="search">Search Posts</label> */}
                 <input
@@ -122,6 +132,8 @@ const Posts = () => {
                 : null
                 }
                 </div>
+                </>
+                }
             </div>
 
             {/* <section className='first-section'>

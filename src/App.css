@@ -97,8 +97,10 @@ section {
     width: 100%;
 }
 
-.error-page h2 {
-    margin-top: 3rem;
+.error-message {
+    margin-top: 15rem;
+    text-align: center;
+    height: 60vh;
 }
 
 .form {

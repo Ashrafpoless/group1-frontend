@@ -13,7 +13,6 @@ const Login = () => {
     
 });
 
-const [error, setError] = useState(null);
 const navigate = useNavigate();
 
 const {login} = useContext(AuthContext)
@@ -48,7 +47,11 @@ const handelChange = (e)=>{
           navigate('/');
       
       } catch (err) {
-          setError(err.message);
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: `${err.response.data.message}`,
+      });
       }
     };
 
