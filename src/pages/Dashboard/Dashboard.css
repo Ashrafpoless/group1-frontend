@@ -8,6 +8,12 @@
     margin-inline: auto;
 }
 
+.dashboard_title{
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 4rem ;
+}
+
 .dashboard_post {
     display: flex;
     align-items: center;
@@ -43,7 +49,7 @@
 
 .dashboard_center {
     text-align: center;
-    padding-top: 5rem;
+    padding-top: 2rem;
     height: 90vh;
     margin-inline: auto;
     display: block;

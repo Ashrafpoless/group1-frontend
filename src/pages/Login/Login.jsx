@@ -65,7 +65,6 @@ const handelChange = (e)=>{
 
         <div className="login-form">
           <h2>Log In</h2>
-          {error && <p>{error}</p>}
           <form >
             <input type="email" placeholder="Email" name='email' required onChange={handelChange}/>
             <input type="password" placeholder="Password" name='password' required onChange={handelChange}/>

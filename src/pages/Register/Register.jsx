@@ -41,7 +41,6 @@ const Register = () => {
         } catch (err) {
             Swal.fire({
                 icon: "warning",
-                title: "Oops...",
                 text: `${err.response.data.message}`,
             });
         }
