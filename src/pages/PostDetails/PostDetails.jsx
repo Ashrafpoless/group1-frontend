@@ -75,6 +75,24 @@ const PostDetails = () => {
         });
     };
 
+    const handleSave = async()=>{
+        try {
+            await axios.post(`http://localhost:5050/api/users/myfavorites`, {
+                pid: id,
+                uid: currentUser.id
+            });
+            Swal.fire({
+                title: "Saved",
+                icon: "success"
+            });
+        } catch (err) {
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: `${err.response.data.message}`,
+            });
+        }
+    };
 
     return (
         <div className="postDetail container">
@@ -100,7 +118,7 @@ const PostDetails = () => {
                         </div>
                     )}
                     </div>
-                    <button>save</button>
+                    <button onClick={handleSave}>save</button>
                 </div>
                 <h1>{post.title}</h1>
                 {getText(post.content)}

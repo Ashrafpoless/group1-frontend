@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import './Dashboard.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Pagination } from 'react-bootstrap';
+
+import './Dashboard.css';
 
 const Dashboard = () => {
     const [myPosts, setMyPosts] = useState([]);
@@ -83,6 +84,8 @@ const Dashboard = () => {
 
     return (
         <section className="dashboard">
+        <h2 className='dashboard_title'>My Posts</h2>
+
             {myPosts.length ? (
                 <div className="dashboard_container">
                     {paginatedPosts.map((post) => {
@@ -121,7 +124,7 @@ const Dashboard = () => {
                     })}
                 </div>
             ) : (
-                <h2 className="dashboard_center"> You have no posts yet</h2>
+                <h2 className="dashboard_center"> You Have No Posts Yet</h2>
             )}
             <div>{myPosts.length > 10 ? 
                 <Pagination className='pagination' size='lg'>
