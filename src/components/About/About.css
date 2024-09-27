@@ -58,8 +58,87 @@
   text-decoration: none;
   margin-top: 10px;
   display: inline-block;
+  
 }
 
 .linkedin-link:hover {
   color: #004182;
+}
+
+.blog-info {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.blog-info h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.blog-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* About.css */
+
+/* About.css */
+.about-us-container {
+  padding: 20px;
+}
+
+.about-hyf-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.team-member-card {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  text-align: center;
+}
+
+.linkedin-link {
+  color: #0e76a8;
+  font-size: 1.5rem;
+  margin-top: 5px;
+}
+
+
+.about-hyf-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about-hyf-container p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-hyf-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-hyf-list li {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.about-hyf-list li strong {
+  font-weight: bold;
 }
