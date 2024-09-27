@@ -1,6 +1,6 @@
 .about-us-container {
   text-align: center;
-  padding: 40px 20px;
+  padding-left: 40px;
 }
 
 .about-us-container h1 {
@@ -9,7 +9,7 @@
 }
 
 .about-us-container p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 40px;
 }
 
@@ -67,7 +67,10 @@
 
 .blog-info {
   background-color: #f9f9f9;
-  padding: 20px;
+  padding-left: 80px;
+  padding-right: 60px;
+  padding-top: 30px;
+  padding-bottom: 10px;
   border-radius: 8px;
   margin-bottom: 40px;
   text-align: left;
@@ -76,19 +79,18 @@
 .blog-info h2 {
   font-size: 2rem;
   margin-bottom: 15px;
+  text-decoration: underline;
 }
 
 .blog-info p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #333;
 }
 
 /* About.css */
-
-/* About.css */
 .about-us-container {
-  padding: 20px;
+  padding: 40px;
 }
 
 .about-hyf-list {
@@ -100,6 +102,10 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.team{
+  text-decoration: underline;
 }
 
 .team-member-card {
@@ -118,25 +124,33 @@
 
 
 .about-hyf-container h1 {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 2.2rem;
+  text-decoration: underline;
   margin-bottom: 20px;
+  padding: 20px;
+  padding-left: 75px;
 }
 
 .about-hyf-container p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.6;
   margin-bottom: 20px;
+  text-align: left;
+  padding-left: 70px;
 }
 
 .about-hyf-list {
   list-style-type: none;
   padding: 0;
+  padding-left: 70px;
+  padding-bottom: 20px;
 }
 
 .about-hyf-list li {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   margin-bottom: 15px;
+  text-align: left;
 }
 
 .about-hyf-list li strong {

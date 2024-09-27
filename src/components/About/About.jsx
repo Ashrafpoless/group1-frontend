@@ -76,7 +76,7 @@ const AboutUs = () => {
         </p>
       </div>
 
-      <h2>Our Team</h2>
+      <h2 className='team'>Our Team</h2>
       <div className="team-grid">
         {teamMembers.map((member, index) => (
           <div key={index} className="team-member-card">
