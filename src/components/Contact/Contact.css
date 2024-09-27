@@ -1,0 +1,126 @@
+.contact-h2 {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 30px;
+    color: rgb(15, 2, 2);
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+    min-height: 5vh;
+    padding-left: 30%;
+    padding-top: 20px;
+
+  }
+
+  .contact-p {
+    
+    font-size: 35px;
+    line-height: 1.8;
+    color: #666;
+   padding-left: 20%;
+    min-height: 5vh;
+    margin-right: 40px;
+    margin-left: 35px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+/* Contact.css */
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-top: 8vh;
+    gap: 20px;
+    height: 80vh;
+    width: 250vh;
+    background-color: rgb(72, 41, 112); /* Matching the blue background */
+    color: rgb(34, 20, 61);
+    box-sizing: border-box;
+  }
+  
+  .contact-form-section {
+    flex: 1;
+    background-color: #7d53f3;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .contact-form-section h2,
+  .location h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #ffffff;
+    color: #0a5f9e;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 20px 0;
+  }
+  
+  .map-section {
+    flex: 1;
+   width: 1000px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-top: 0%;
+  }
+  
+  .map-section iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  
+  .contact-p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .link-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+   
+  .location{
+    margin-top: 600px;
+    margin-right: 250px;
+  }

@@ -9,12 +9,11 @@ const Footer = () => {
         <footer className=" footer">
             <div className="about-us">
                 <p>
-                    {' '}
-                    <Link to={'/about'}>About Us</Link>{' '}
+                    <Link to={'/about'}>About Us</Link>
                 </p>
                 <p>
                     {' '}
-                    <Link>Contact Us</Link>{' '}
+                    <Link to={'/contact'}>Contact Us</Link>{' '}
                 </p>
             </div>
             <div className="copyright">
