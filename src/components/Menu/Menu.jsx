@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import SERVER_URL from '../../server';
 
 const Menu = ({ cat }) => {
     const [posts, setPosts] = useState([]);
@@ -10,7 +11,7 @@ const Menu = ({ cat }) => {
         const fetchPosts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/posts?cat=${cat}`
+                    SERVER_URL + `api/posts?cat=${cat}`
                 );
                 setPosts(res.data);
             } catch (err) {

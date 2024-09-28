@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SERVER_URL from '../../server';
 
 const Register = () => {
 
@@ -29,7 +30,7 @@ const Register = () => {
                 })
             }
 
-            await axios.post("http://localhost:5050/api/auth/register", inputs)
+            await axios.post(SERVER_URL + "api/auth/register", inputs)
             Swal.fire({
                 icon: "success",
                 title: "You have been registered successfully",
