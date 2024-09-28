@@ -8,6 +8,7 @@ import { FaCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 import './Userprofile.css';
+import SERVER_URL from '../../server';
 
 const Userprofile = () => {
     const [user, setUser] = useState([])
@@ -23,7 +24,7 @@ const Userprofile = () => {
         const fetchUser = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/users/user/${currentUser.id}`
+                    SERVER_URL + `api/users/user/${currentUser.id}`
                 );
                 setUser(res.data[0]);
             } catch (err) {
@@ -45,7 +46,7 @@ const Userprofile = () => {
         formData.append('file', file);
         try {
             const res = await axios.post(
-                'http://localhost:5050/api/upload',
+                SERVER_URL + 'api/upload',
                 formData,
                 {
                     headers: {
@@ -64,7 +65,7 @@ const Userprofile = () => {
         const imgUrl = await upload();
         try {
             await axios.put(
-                `http://localhost:5050/api/users/${currentUser.id}`,
+                SERVER_URL + `api/users/${currentUser.id}`,
                 {
                     currentPassword,
                     newPassword,

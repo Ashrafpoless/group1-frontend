@@ -20,6 +20,7 @@ import {
 } from 'react-share';
 
 import './PostDetails.css';
+import SERVER_URL from '../../server.js';
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -37,7 +38,7 @@ const PostDetails = () => {
         const fetchPosts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/posts/${id}`
+                    SERVER_URL + `api/posts/${id}`
                 );
                 setPost(res.data[0]);
                 console.log(res.data[0].date);
@@ -61,7 +62,7 @@ const PostDetails = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
-                    axios.delete(`http://localhost:5050/api/posts/${id}`, {
+                    axios.delete(SERVER_URL + `api/posts/${id}`, {
                         withCredentials: true
                     });
                 } catch (err) {
@@ -77,7 +78,7 @@ const PostDetails = () => {
 
     const handleSave = async()=>{
         try {
-            await axios.post(`http://localhost:5050/api/users/myfavorites`, {
+            await axios.post(SERVER_URL + `api/users/myfavorites`, {
                 pid: id,
                 uid: currentUser.id
             });

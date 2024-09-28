@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import moment from 'moment';
+import SERVER_URL from '../../server';
 
 import './CreatePost.css';
 const CreatePost = () => {
@@ -23,7 +24,7 @@ const CreatePost = () => {
         formData.append('file', file);
         try {
             const res = await axios.post(
-                'http://localhost:5050/api/upload',
+                SERVER_URL + 'api/upload',
                 formData,
                 {
                     headers: {
@@ -43,7 +44,7 @@ const CreatePost = () => {
         try {
             state
                 ? await axios.put(
-                      `http://localhost:5050/api/posts/${state.id}`,
+                      SERVER_URL + `api/posts/${state.id}`,
                       {
                             title,
                             content: value,
@@ -51,7 +52,7 @@ const CreatePost = () => {
                           img: imgUrl
                       }
                   )
-                : await axios.post(`http://localhost:5050/api/posts/`, {
+                : await axios.post(SERVER_URL + `api/posts/`, {
                       title,
                       content: value,
                       img: imgUrl,

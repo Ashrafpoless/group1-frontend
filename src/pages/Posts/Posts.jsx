@@ -6,6 +6,7 @@ import axios from 'axios';
 import Loading from '../../components/Loading/Loading'
 
 import './Posts.css';
+import SERVER_URL from '../../server';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -25,7 +26,7 @@ const Posts = () => {
         const fetchPosts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/posts${cat}`
+                    SERVER_URL + `api/posts${cat}`
                 );
                 setPosts(res.data);
                 setNumberOfPages(Math.ceil(res.data.length / pageSize));
