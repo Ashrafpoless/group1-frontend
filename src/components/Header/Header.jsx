@@ -4,7 +4,8 @@ import { Nav, NavDropdown } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
 
-import logo from '../../assets/img/logo10.png';
+import logo from '../../assets/img/logo-background1.png';
+import icon from '../../assets/img/sign-in.png';
 
 import './Header.css';
 
@@ -66,13 +67,18 @@ const Header = () => {
                     </NavDropdown>
                 </div>
                 <div className="user">
+                      
                     {currentUser ? (
-                        <Nav.Link href="/" onClick={logout}>
+                       
+                       <Nav.Link href="/" onClick={logout}>
                             {' '}
                             Logout
                         </Nav.Link>
                     ) : (
-                        <Nav.Link href="/login">Sign in</Nav.Link>
+                        <Nav.Link href="/login">Sign in
+                        <img src={icon} className="icon" alt="Group One" />
+                        </Nav.Link>
+                        
                     )}
                     {currentUser ? (
                         <Nav.Link href={`/profile/${currentUser.id}`}>
