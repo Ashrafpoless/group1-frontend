@@ -52,6 +52,7 @@ const PostDetails = () => {
    
 
     const handleDelete = async () => {
+        try {
         Swal.fire({
             title: 'Are You Sure',
             text: `You won't be able to revert this!`,
@@ -61,19 +62,23 @@ const PostDetails = () => {
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                try {
+                // try {
                     axios.delete(SERVER_URL + `api/posts/${id}`, {
                         withCredentials: true
                     });
-                } catch (err) {
-                    console.log(err);
-                }
+                // } catch (err) {
+                    // console.log(err);
+                // }
                 Swal.fire('Deleted', 'Your Post Has Been Deleted', 'success');
                 navigate('/');
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire('Cancelled', 'Your post is Safe :)', 'error');
             }
         });
+    } catch (err) {
+        console.log(err);
+    }
+
     };
 
     const handleSave = async()=>{

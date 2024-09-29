@@ -4,6 +4,8 @@ import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Pagination } from 'react-bootstrap';
+import SERVER_URL from '../../server.js';
+
 
 import './favorites.css'
 
@@ -24,7 +26,7 @@ const Favorites = () => {
         const fetchMyPosts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/users/myfavorites/${currentUser.id}`
+                    SERVER_URL + `api/users/myfavorites/${currentUser.id}`
                 );
                 setMyPosts(res.data.reverse());
                 setNumberOfPages(Math.ceil(res.data.length / pageSize));
