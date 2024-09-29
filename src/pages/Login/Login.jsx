@@ -60,17 +60,16 @@ const handelChange = (e)=>{
     <div className="auth-container">
       <div className="form-container">
         {/* Logo & App Name */}
-        <div className="app-header">
-        </div>
+        
 
         <div className="login-form">
-          <h2>Log In</h2>
+          <h2>Sign In</h2>
           <form >
             <input type="email" placeholder="Email" name='email' required onChange={handelChange}/>
             <input type="password" placeholder="Password" name='password' required onChange={handelChange}/>
             <div className="button-group">
                 <button type="submit" onClick={(e)=>handleSubmit(e)}>Sign In</button>
-                <button type="button" className="cancel-btn" >Cancel</button>
+                <button type="button" className="cancel-btn" ><Link to={'/posts'}>Cancel </Link></button>
           </div>
             <div className="forgot-password">
               <a href="#">Forgot Password?</a>

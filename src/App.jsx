@@ -10,11 +10,13 @@ import Login from './pages/Login/Login';
 import CreatePost from './pages/CreatePost/CreatePost';
 import UserProfile from './pages/Userprofile/Userprofile';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Favorites from './pages/Favorites/Favorites';
+import About from './components/About/About';
+import Contact from './components/Contact/Contact';
 import AuthContextProvider from './context/AuthContext';
 
 import './App.css';
-import About from './components/About/About';
-import Contact from './components/Contact/Contact';
+
 function App() {
     const Router = createBrowserRouter([
         {
@@ -30,9 +32,9 @@ function App() {
                 { path: 'create', element: <CreatePost /> },
                 { path: 'profile/:id', element: <UserProfile /> },
                 { path: 'myposts/:id', element: <Dashboard /> },
+                { path: 'myfavorites/:id', element: <Favorites /> },
                 { path: 'about', element: <About /> },
                 { path: 'contact', element: <Contact /> }
-
             ]
         }
     ]);

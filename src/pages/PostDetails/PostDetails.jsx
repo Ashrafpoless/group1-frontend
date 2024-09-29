@@ -47,7 +47,7 @@ const PostDetails = () => {
             }
         };
         fetchPosts();
-    }, []);
+    }, [id]);
 
    
 
