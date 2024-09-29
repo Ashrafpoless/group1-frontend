@@ -22,15 +22,12 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 450px;
     padding: 40px;
     text-align: center;
 }
 
-.app-header h1 {
-    font-size: 28px;
-    color: #333;
-}
+
 
 h2 {
     font-size: 24px;
@@ -38,12 +35,13 @@ h2 {
     margin-bottom: 20px;
 }
 
-form {
+.form-container form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
-input {
+.form-container input {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -51,18 +49,29 @@ input {
     font-size: 16px;
 }
 
-button {
+.button-group{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px;
+}
+
+.button-group button {
     padding: 10px;
     background-color: #007bff;
     color: white;
+    width: 5rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
 
-button:hover {
+.button-group button:hover {
     background-color: #0056b3;
+}
+.cancel-btn a{
+    color: white;
 }
 
 .social-login {

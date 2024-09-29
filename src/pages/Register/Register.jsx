@@ -78,9 +78,10 @@ const Register = () => {
                             <button
                                 type="button"
                                 className="cancel-btn"
-                                // onClick={handleCancel}
+                                
                             >
-                                Cancel
+                                <Link to={'/posts'}>Cancel </Link>
+                                
                             </button>
                         </div>
                     </form>

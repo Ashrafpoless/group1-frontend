@@ -5,11 +5,13 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 
 import './CreatePost.css';
+
 const CreatePost = () => {
     const state = useLocation().state;
-    const [value, setValue] = useState(state?.content || '');
+    const [content, setContent] = useState(state?.content || '');
     const [title, setTitle] = useState(state?.title || '');
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || '');
@@ -37,27 +39,36 @@ const CreatePost = () => {
         }
     };
 
+
+
     const handleClick = async (e) => {
         e.preventDefault();
         const imgUrl = await upload();
         try {
+            if(!title || !content || !cat || !imgUrl){
+                return Swal.fire({
+                    title:'Please Fill All The fields',
+                    text: `SomeThing Missing`,
+                    icon: 'warning',
+                })
+            }
             state
                 ? await axios.put(
-                      `http://localhost:5050/api/posts/${state.id}`,
-                      {
+                        `http://localhost:5050/api/posts/${state.id}`,
+                        {
                             title,
-                            content: value,
+                            content,
                             cat,
-                          img: imgUrl
-                      }
-                  )
+                            img: imgUrl
+                        }
+                    )
                 : await axios.post(`http://localhost:5050/api/posts/`, {
-                      title,
-                      content: value,
-                      img: imgUrl,
-                      cat,
-                      uid,
-                      date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+                        title,
+                        content: value,
+                        img: imgUrl,
+                        cat,
+                        uid,
+                        date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
                   });
             navigate(`/myposts/${uid}`);
         } catch (error) {
@@ -78,8 +89,8 @@ const CreatePost = () => {
                     <ReactQuill
                         className="editor"
                         theme="snow"
-                        value={value || ''}
-                        onChange={setValue}
+                        value={content || ''}
+                        onChange={setContent}
                     />
                 </div>
             </div>

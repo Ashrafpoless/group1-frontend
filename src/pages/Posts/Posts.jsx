@@ -104,7 +104,7 @@ const Posts = () => {
                     : `${post.content.slice(0, 500)} . . . . .`)}</p>
                                 <button>
                                     <Link
-                                        className="link"
+                                        className="read-more"
                                         to={`/post/${post.id}`}
                                     >
                                         Read More

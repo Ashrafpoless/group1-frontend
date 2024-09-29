@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
-
+// import background from '../../assets/img/background.png';
+// import sectionTwobg from '../../assets/img/350240b4-e0a3-4800-bec2-e6c5138860ce.jpeg'
+// import second from  '../../assets/img/bloger_vloger-m.jpg'
 
 import './Home.css';
 const Homepage = () => {
@@ -20,22 +22,22 @@ const Homepage = () => {
                 </div>
             </div>
 
-            <div class="container">
-                <div class="column">
+            <div className="container">
+                <div className="column">
                     <h2>Build a blog</h2>
                     <p>
                         Write freely while experience our intuitive platform for
                         blogging
                     </p>
                 </div>
-                <div class="column">
+                <div className="column">
                     <h2>Manage your projects</h2>
                     <p>
                         Streamline your day-to-day with Blog, tailored to your
                         needs.
                     </p>
                 </div>
-                <div class="column">
+                <div className="column">
                     <h2>Grow online</h2>
                     <p>
                         Expand your reach and share your blogs with your
@@ -43,6 +45,16 @@ const Homepage = () => {
                     </p>
                 </div>
             </div>
+
+
+            {/* <section className='first-section'>
+            <div className='first-empty'> </div>
+                <div className='first-img'> <img src={background} alt="" /></div>
+                <div className="container first-text">
+                    <h1>Unleashing Innovation: Your Daily Dose of Writing</h1>
+                    <p>Welcome to your ultimate destination for tech insights, where innovation meets creativity!</p>
+                </div>
+            </section> */}
 
             <div className="image-text-section1">
                 <div className="image-container1">
@@ -64,11 +76,14 @@ const Homepage = () => {
             <div className="overlay-text2">
                 Take your project to the next level
                 <div>
-                    <a href="register/">
-                        <button className="button_three"> <Link to='/register'>Start Now</Link> </button>
-                    </a>
+                    <Link to='/register' className="button_three">Start Now</Link> 
                 </div>
             </div>
+
+            {/* new sections */}
+
+
+            {/* the end */}
         </div>
     );
 };

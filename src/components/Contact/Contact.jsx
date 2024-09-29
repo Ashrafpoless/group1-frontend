@@ -30,6 +30,7 @@ const Contact = () => {
 
   return (
     <div className="contact-container">
+
       <div className="contact-form-section">
         <h2 className='contact-h2'>Contact Us</h2>
   
@@ -78,7 +79,7 @@ const Contact = () => {
             />
           </div>
 
-          <button type="submit">Send Message</button>
+          <button type="submit" className='contact-btn'>Send Message</button>
         </form>
       </div>
 
@@ -92,13 +93,7 @@ const Contact = () => {
           allowFullScreen=""
           loading="lazy"
         ></iframe>
-      </div>
-
-      <div className="location">
-              <p>Add: Avenue de Tervueren 142, 1150 Bruxelles, Belgium</p>
-         </div>
-
-      <div className="link-container">
+        <p>Add: Avenue de Tervueren 142, 1150 Bruxelles, Belgium</p>
         <Link className="link" to="mailto:info@hyfbe.be">info@hyfbe.be</Link>
       </div>
 

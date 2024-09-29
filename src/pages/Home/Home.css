@@ -42,7 +42,7 @@
     top: 0%;
 }
 
-.overlay-text1 {
+.overlay-text1  {
     position: absolute;
     top: 50%;
     left: 80%;
@@ -52,7 +52,9 @@
     font-weight: bold;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     text-align: center;
+
 }
+
 
 .overlay-text2 {
     padding-top: 3%;
@@ -64,12 +66,46 @@
     font-weight: bold;
 }
 
+.button-two{
+    
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    width: 8rem;
+    height: 3rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 103%;
+    left: 40%;
+}
+
+.button-two:hover{
+    background-color: #0056b3;
+}
+
 .button-two a{
     color: white;
 }
 
 .button_three {
     background-color: black;
+    padding: 10px;
+    color: white;
+    width: 8rem;
+    height: 3rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button_three:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
 }
 
 .button_three a{
@@ -99,4 +135,65 @@ h2 {
 
 p {
     font-size: 1rem;
+}
+
+
+/* new  */
+
+
+
+
+.first-section{
+    background: #d35a36;
+    display: flex;
+    margin-top: 2rem;
+    height: 90vh;
+    
+}
+.first-empty{
+    flex: 1;
+    background: #d35a36;
+}
+
+.first-img{
+    flex: 2;
+    /* background-image: url('../../assets/img/background.png'); */
+    height: 90vh;
+    
+}
+
+.first-img img{
+    height: 90vh;
+    width: fit-content;
+}
+
+.first-text{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.first-text h1{
+    font-size: 3rem;
+    text-align: center;
+
+    color: aliceblue;
+}
+
+.first-text p{
+    font-size: 1.5rem;
+    text-align: center;
+    color: aliceblue;
+}
+
+.second-section{
+    /* background: url('../../assets/img/all-in-one-desktop-2500w.jpg'); */
+    height: 90vh;
+    background-size: contain;  
+
+} 
+.second-img{
+    
 }
