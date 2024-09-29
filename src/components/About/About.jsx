@@ -27,7 +27,7 @@ const teamMembers = [
   {
     name: 'Gemechis Fikadu',
     position: 'Team Member',
-    linkedInUrl: 'https://www.linkedin.com/in/gemechis-fikadu',
+    linkedInUrl: 'https://www.linkedin.com/in/gemechis-g-226628317',
   },
 ];  
 

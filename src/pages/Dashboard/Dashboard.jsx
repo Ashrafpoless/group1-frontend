@@ -4,8 +4,9 @@ import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Pagination } from 'react-bootstrap';
-
+import SERVER_URL from '../../server';
 import './Dashboard.css';
+
 
 const Dashboard = () => {
     const [myPosts, setMyPosts] = useState([]);
@@ -23,7 +24,7 @@ const Dashboard = () => {
         const fetchMyPosts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5050/api/users/myposts/${currentUser.id}`
+                    SERVER_URL + `api/users/myposts/${currentUser.id}`
                 );
                 setMyPosts(res.data.reverse());
                 setNumberOfPages(Math.ceil(res.data.length / pageSize));
@@ -46,7 +47,7 @@ const Dashboard = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
-                    axios.delete(`http://localhost:5050/api/posts/${id}`, {
+                    axios.delete(SERVER_URL + `api/posts/${id}`, {
                         withCredentials: true
                     });
                     console.log('send a request');

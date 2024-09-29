@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import SERVER_URL from '../../server';
 
 import './CreatePost.css';
 
@@ -24,51 +25,42 @@ const CreatePost = () => {
         const formData = new FormData();
         formData.append('file', file);
         try {
-            const res = await axios.post(
-                'http://localhost:5050/api/upload',
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+            const res = await axios.post(SERVER_URL + 'api/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
-            );
+            });
             return res.data.url; // Cloudinary URL from the backend
         } catch (err) {
             console.log(err);
         }
     };
 
-
-
     const handleClick = async (e) => {
         e.preventDefault();
         const imgUrl = await upload();
         try {
-            if(!title || !content || !cat || !imgUrl){
+            if (!title || !content || !cat || !imgUrl) {
                 return Swal.fire({
-                    title:'Please Fill All The fields',
+                    title: 'Please Fill All The fields',
                     text: `SomeThing Missing`,
-                    icon: 'warning',
-                })
+                    icon: 'warning'
+                });
             }
             state
-                ? await axios.put(
-                        `http://localhost:5050/api/posts/${state.id}`,
-                        {
-                            title,
-                            content,
-                            cat,
-                            img: imgUrl
-                        }
-                    )
-                : await axios.post(`http://localhost:5050/api/posts/`, {
-                        title,
-                        content: value,
-                        img: imgUrl,
-                        cat,
-                        uid,
-                        date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+                ? await axios.put(SERVER_URL + `api/posts/${state.id}`, {
+                      title,
+                      content,
+                      cat,
+                      img: imgUrl
+                  })
+                : await axios.post(SERVER_URL + `api/posts/`, {
+                      title,
+                      content,
+                      img: imgUrl,
+                      cat,
+                      uid,
+                      date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
                   });
             navigate(`/myposts/${uid}`);
         } catch (error) {
@@ -95,7 +87,6 @@ const CreatePost = () => {
                 </div>
             </div>
             <div className="category_menu">
-                
                 <div className="category_item_list">
                     <h1>Categories</h1>
                     <div className="cat_list">
@@ -163,7 +154,8 @@ const CreatePost = () => {
                             onChange={(e) => setCat(e.target.value)}
                         />
                         <label htmlFor="food">Food</label>
-                    </div><div className="cat_list">
+                    </div>
+                    <div className="cat_list">
                         <input
                             type="radio"
                             checked={cat === 'general'}
