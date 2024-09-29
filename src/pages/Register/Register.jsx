@@ -91,7 +91,7 @@ const Register = () => {
                 {/* Link to Log In Page */}
                 <div className="toggle-link">
                     <p>
-                        Already have an account? <Link to="/login">Log In</Link>
+                        Already have an account? <Link to="/login">Sign In</Link>
                     </p>
                 </div>
             </div>
