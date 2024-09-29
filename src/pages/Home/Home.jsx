@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-// import background from '../../assets/img/background.png';
-// import sectionTwobg from '../../assets/img/350240b4-e0a3-4800-bec2-e6c5138860ce.jpeg'
-// import second from  '../../assets/img/bloger_vloger-m.jpg'
-
-=======
->>>>>>> origin/main
 import './Home.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
