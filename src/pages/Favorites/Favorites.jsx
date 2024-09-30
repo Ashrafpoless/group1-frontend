@@ -50,7 +50,7 @@ const Favorites = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
-                    axios.delete(`http://localhost:5050/api/users/myfavorites/${id}`, {
+                    axios.delete( SERVER_URL + `api/users/myfavorites/${id}`, {
                         withCredentials: true
                     });
                 } catch (err) {

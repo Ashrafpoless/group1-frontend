@@ -105,7 +105,7 @@ const Posts = () => {
                                             <h1>
                                                 {post.title.length <= 25
                                                     ? post.title
-                                                    : `${post.title.slice(0, 25)}. . . .`}
+                                                    : `${post.title.slice(0, 20)}. . . .`}
                                             </h1>
                                         </Link>
                                         <p>
