@@ -1,7 +1,8 @@
 .add {
-    margin-top: 40px;
+    margin-top: 75px;
     display: flex;
     gap: 30px;
+    height:75vh ;
 }
 .create_content {
     flex: 5;
@@ -18,11 +19,13 @@
     height: 300px;
     overflow: scroll;
     border: 1px solid lightgrey;
+    max-width:  900PX;
 }
 .editor {
     height: 100%;
     border: none;
     background-color: white;
+    align-self: start; 
 }
 
 .category_menu {
@@ -31,19 +34,36 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.category_item_list{
+    border: 1px solid lightgrey;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    font-size: 12px;
+    color: #555;
+}
+
+
+.cat_list {
+    display: flex;
+    gap: 10px;
+    color: #003a7b;
+    font-size: 15px;
+}
+
+
 .category_item {
-    /* border: 1px solid lightgrey; */
     padding: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 25px;
     font-size: 12px;
     color: #555;
 }
-.category_item h1 {
-    font-size: 20px;
-}
+
 
 .file {
     text-decoration: underline;
@@ -57,35 +77,29 @@
     display: flex;
     justify-content: space-between;
 }
-.create_buttons button:first-child {
+.cancel-create {
     cursor: pointer;
-    color: teal;
+    color: #007bff;
     background-color: white;
-    border: 1px solid teal;
+    border: 1px solid #007bff;
     padding: 3px 5px;
 }
+.cancel-create:hover{
+    background-color: #007bff;
+    color: white;
 
-.create_buttons button:last-child {
+}
+.create_buttons button {
     cursor: pointer;
     color: white;
-    background-color: teal;
+    background-color: #007bff;
     border: 1px solid white;
     padding: 3px 5px;
 }
 
-.category_item_list{
-    border: 1px solid lightgrey;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    font-size: 12px;
-    color: #555;
-}
+.create_buttons button:hover{
+    color: #007bff;
+    background-color: white;
+    border: 1px solid #007bff;
 
-.cat_list {
-    display: flex;
-    justify-content: flex-start;
-    gap: 2px;
-    color: teal;
 }

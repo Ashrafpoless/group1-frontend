@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -164,11 +164,10 @@ const CreatePost = () => {
                             id="general"
                             onChange={(e) => setCat(e.target.value)}
                         />
-                        <label htmlFor="food">general</label>
+                        <label htmlFor="general">general</label>
                     </div>
                 </div>
                 <div className="category_item">
-                    {/* <h1>Publish</h1> */}
                     <input
                         style={{ display: 'none' }}
                         type="file"
@@ -179,7 +178,7 @@ const CreatePost = () => {
                         Upload Image
                     </label>
                     <div className="create_buttons">
-                        <button>Cancel</button>
+                        <Link to={'/posts'} className='cancel-create'>Cancel</Link>
                         <button onClick={handleClick}>Publish</button>
                     </div>
                 </div>

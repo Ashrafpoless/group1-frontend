@@ -69,7 +69,7 @@
 .button-two{
     
     padding: 10px;
-    background-color: #007bff;
+    background-color:#6f6af8;
     color: white;
     width: 8rem;
     height: 3rem;
@@ -129,71 +129,10 @@
     text-align: center;
 }
 
-h2 {
+.column h2 {
     margin-bottom: 10px;
 }
 
-p {
+.column p {
     font-size: 1rem;
-}
-
-
-/* new  */
-
-
-
-
-.first-section{
-    background: #d35a36;
-    display: flex;
-    margin-top: 2rem;
-    height: 90vh;
-    
-}
-.first-empty{
-    flex: 1;
-    background: #d35a36;
-}
-
-.first-img{
-    flex: 2;
-    /* background-image: url('../../assets/img/background.png'); */
-    height: 90vh;
-    
-}
-
-.first-img img{
-    height: 90vh;
-    width: fit-content;
-}
-
-.first-text{
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.first-text h1{
-    font-size: 3rem;
-    text-align: center;
-
-    color: aliceblue;
-}
-
-.first-text p{
-    font-size: 1.5rem;
-    text-align: center;
-    color: aliceblue;
-}
-
-.second-section{
-    /* background: url('../../assets/img/all-in-one-desktop-2500w.jpg'); */
-    height: 90vh;
-    background-size: contain;  
-
-} 
-.second-img{
-    
 }

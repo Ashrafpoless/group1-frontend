@@ -75,7 +75,7 @@ const Header = () => {
                             Logout
                         </Nav.Link>
                     ) : (
-                        <Nav.Link href="/login">Sign in
+                        <Nav.Link href="/login">
                         <img src={icon} className="icon" alt="Group One" />
                         </Nav.Link>
                         

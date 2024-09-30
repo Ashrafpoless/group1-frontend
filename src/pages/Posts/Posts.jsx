@@ -105,7 +105,7 @@ const Posts = () => {
                                             <h1>
                                                 {post.title.length <= 25
                                                     ? post.title
-                                                    : `${post.title.slice(0, 25)}. . .  .`}
+                                                    : `${post.title.slice(0, 25)}. . . .`}
                                             </h1>
                                         </Link>
                                         <p>
@@ -115,14 +115,14 @@ const Posts = () => {
                                                     : `${post.content.slice(0, 500)} . . . . .`
                                             )}
                                         </p>
-                                        <button>
+                                        
                                             <Link
                                                 className="link-read-more"
                                                 to={`/post/${post.id}`}
                                             >
                                                 Read More
                                             </Link>{' '}
-                                        </button>
+                                        
                                     </div>
                                 </div>
                             ))}
@@ -162,20 +162,6 @@ const Posts = () => {
                     </>
                 )}
             </div>
-
-            {/* <section className='first-section'>
-        <div className="container first">
-            <h1>Unleashing Innovation: Your Daily Dose of Writing</h1>
-            <p>Welcome to your ultimate destination for tech insights, where innovation meets creativity!</p>
-        </div>
-
-    </section>
-     <section className='second-section'>
-        <div className="container second">
-            <h1>Unleashing Innovation: Your Daily Dose of Writing</h1>
-            <p>Welcome to your ultimate destination for tech insights, where innovation meets creativity!</p>
-        </div>
-    </section> */}
         </>
     );
 };
