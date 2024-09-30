@@ -20,6 +20,10 @@
     text-decoration: none;
 }
 
+.btn_mine:hover{
+    text-decoration: underline;
+}
+
 .profile_details {
     width: 100%;
 }
@@ -51,7 +55,7 @@
 }
 
 .avatar_form label{
-    background: #6f6af8;
+    background: #007bff;
     color: #fff;
     font-size: 1.3rem;
     position: absolute;
@@ -70,6 +74,7 @@
 
 .profile-avatar_btn {
     color: #fff;
+    background: #007bff;
     font-size: 1.3rem;
     position: absolute;
     right: 2rem;
@@ -79,12 +84,12 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-}
-
-.profile-avatar_btn {
     cursor: pointer;
     padding: 0;
-    background: var(--color-primary);
+}
+
+.profile-avatar_btn:hover {
+    background-color: #544fdd;
 }
 
 .profile_details h1 {
@@ -139,7 +144,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 300ms ease;
-    background: #6f6af8;
+    background: #007bff;
     color: #fff;
     margin-bottom: 40px;
 }

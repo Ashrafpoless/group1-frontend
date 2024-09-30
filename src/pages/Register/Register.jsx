@@ -58,7 +58,7 @@ const Register = () => {
                     
                 </div>
                 <div className="register-form">
-                    <h2>Sign up</h2>
+                    <h2 className='login-title'>Sign up</h2>
                     <form >
                         <input type="text" placeholder="Username" required name='username' onChange={handelChange}/>
                         <input type="email" placeholder="Email" required name='email' onChange={handelChange}/>

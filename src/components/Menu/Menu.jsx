@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SERVER_URL from '../../server';
 
+import './Menu.css'
 const Menu = ({ cat }) => {
     const [posts, setPosts] = useState([]);
 
@@ -25,13 +26,12 @@ const Menu = ({ cat }) => {
         <div className="menu">
             <h1>Other posts you may like</h1>
             {posts.map((post) => (
-                <div className="post" key={post.id}>
+                <div className="item" key={post.id}>
                     <img src={post.img} alt={post.title} />
-                    <h2>{post.title}</h2>
-                    <button>
-                        {' '}
-                        <Link to={`/post/${post.id}`}>Read More</Link>{' '}
-                    </button>
+                    <h2>{post.title.slice(0, 25)}...</h2>
+                    
+                        <Link className='menu-button' to={`/post/${post.id}`} >Read More</Link>{' '}
+                    
                 </div>
             ))}
         </div>

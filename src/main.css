@@ -30,7 +30,7 @@
     --color-gray-700: hsl(240, 28%, 20%);
     --color-gray-900: hsl(240, 48%, 9%);
 
-    --color-bg: hwb(0 99% 1%);
+    --color-bg: #fcfcfc;
 
     --transition: all 300ms ease;
 
@@ -57,7 +57,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--color-bg);
+    background-color: #fcfcfc;
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--color-gray-700);

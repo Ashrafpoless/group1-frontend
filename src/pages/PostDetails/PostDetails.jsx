@@ -41,7 +41,6 @@ const PostDetails = () => {
                     SERVER_URL + `api/posts/${id}`
                 );
                 setPost(res.data[0]);
-                console.log(res.data[0].date);
             } catch (err) {
                 console.log(err);
             }
@@ -49,7 +48,6 @@ const PostDetails = () => {
         fetchPosts();
     }, [id]);
 
-   
 
     const handleDelete = async () => {
         try {
@@ -106,10 +104,10 @@ const PostDetails = () => {
                 <img src={post?.postImg} alt={post?.postImg} />
                 <div className='user_save'>
                     <div className="post_user"> {post.userImg && <img src={post.userImg} alt={post.username} />}
-                    <div className="info">
-                        <span>{post.username}</span>
-                        <p>Posted {moment(post.date).fromNow()}</p>
-                    </div>
+                        <div className="info">
+                            <span>{post.username}</span>
+                            <p>Posted {moment(post.date).fromNow()}</p>
+                        </div>
                     {currentUser && currentUser.username === post.username && (
                         <div className="edit">
                             <Link to={`/create?edit=${id}`} state={post}>
@@ -124,7 +122,7 @@ const PostDetails = () => {
                         </div>
                     )}
                     </div>
-                    <button onClick={handleSave}>save</button>
+                    {currentUser && <button className='save-button' onClick={handleSave}>save</button>}
                 </div>
                 <h1>{post.title}</h1>
                 {getText(post.content)}
