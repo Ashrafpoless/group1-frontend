@@ -31,14 +31,14 @@ const PostDetails = () => {
     const { currentUser } = useContext(AuthContext);
 
     // share buttons
-    const url = `localhost:5173${location.pathname}`;
+    const url = `https://group1-frontend-six.vercel.app${location.pathname}`;
     const title = 'Check out this website!';
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const res = await axios.get(
-                    SERVER_URL + `api/posts/${id}`
+                      `https://group1-backend-ten.vercel.app/api/posts/${id}`
                 );
                 setPost(res.data[0]);
             } catch (err) {
