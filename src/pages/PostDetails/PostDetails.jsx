@@ -122,7 +122,7 @@ const PostDetails = () => {
                         </div>
                     )}
                     </div>
-                    {currentUser && <button className='save-button' onClick={handleSave}>save</button>}
+                    {currentUser && <button className='save-button' onClick={handleSave}>Add to Favourites</button>}
                 </div>
                 <h1>{post.title}</h1>
                 {getText(post.content)}
