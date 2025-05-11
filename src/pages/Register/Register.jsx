@@ -30,7 +30,8 @@ const Register = () => {
                 })
             }
 
-            await axios.post(SERVER_URL + "api/auth/register", inputs)
+             await axios.post(SERVER_URL + "api/auth/register", inputs)
+           
             Swal.fire({
                 icon: "success",
                 title: "You have been registered successfully",
